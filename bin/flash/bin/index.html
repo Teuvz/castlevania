@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Castle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+    <script type="text/javascript">
+    swfobject.registerObject("castle", "10");
+    </script>
+
+  </head>
+  <body>
+    <div>
+
+      <object id="castle" width="600" height="480">
+
+        <param name="movie" value="castlevania.swf" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="castlevania.swf" width="600" height="480">
+        <!--<![endif]-->
+          <p>Alternative content</p>
+        <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+      </object>
+    </div>
+  </body>
+</html>
