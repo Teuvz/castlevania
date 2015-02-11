@@ -2,7 +2,7 @@ package com.ukuleledog.games.castlevania.elements;
 import motion.Actuate;
 import motion.easing.Bounce;
 import openfl.Assets;
-import openfl.events.Event;
+import flash.events.Event;
 
 /**
  * ...

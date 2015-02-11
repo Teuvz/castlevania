@@ -1,7 +1,7 @@
 package com.ukuleledog.games.castlevania.elements;
 
 import com.ukuleledog.games.core.AnimatedObject;
-import openfl.media.Sound;
+import flash.media.Sound;
 
 /**
  * ...

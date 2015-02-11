@@ -1,26 +1,20 @@
 package;
 
 
-import haxe.Timer;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.MovieClip;
+import flash.text.Font;
+import flash.media.Sound;
+import flash.net.URLRequest;
+import flash.utils.ByteArray;
 import haxe.Unserializer;
-import openfl.display.Bitmap;
-import openfl.display.BitmapData;
-import openfl.display.MovieClip;
-import openfl.events.Event;
-import openfl.text.Font;
-import openfl.media.Sound;
-import openfl.net.URLRequest;
-import openfl.utils.ByteArray;
 import openfl.Assets;
 
 #if (flash || js)
-import openfl.display.Loader;
-import openfl.events.Event;
-import openfl.net.URLLoader;
-#end
-
-#if sys
-import sys.FileSystem;
+import flash.display.Loader;
+import flash.events.Event;
+import flash.net.URLLoader;
 #end
 
 #if ios
@@ -28,16 +22,12 @@ import openfl.utils.SystemPath;
 #end
 
 
-@:access(openfl.media.Sound)
 class DefaultAssetLibrary extends AssetLibrary {
 	
 	
-	public var className (default, null) = new Map <String, Dynamic> ();
-	public var path (default, null) = new Map <String, String> ();
-	public var type (default, null) = new Map <String, AssetType> ();
-	
-	private var lastModified:Float;
-	private var timer:Timer;
+	public static var className (default, null) = new Map <String, Dynamic> ();
+	public static var path (default, null) = new Map <String, String> ();
+	public static var type (default, null) = new Map <String, AssetType> ();
 	
 	
 	public function new () {
@@ -47,193 +37,117 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if flash
 		
 		className.set ("img/15215.png", __ASSET__img_15215_png);
-		type.set ("img/15215.png", AssetType.IMAGE);
+		type.set ("img/15215.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/24903.png", __ASSET__img_24903_png);
-		type.set ("img/24903.png", AssetType.IMAGE);
+		type.set ("img/24903.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3228.png", __ASSET__img_3228_png);
-		type.set ("img/3228.png", AssetType.IMAGE);
+		type.set ("img/3228.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3436.png", __ASSET__img_3436_png);
-		type.set ("img/3436.png", AssetType.IMAGE);
+		type.set ("img/3436.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3449.png", __ASSET__img_3449_png);
-		type.set ("img/3449.png", AssetType.IMAGE);
+		type.set ("img/3449.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3697.png", __ASSET__img_3697_png);
-		type.set ("img/3697.png", AssetType.IMAGE);
+		type.set ("img/3697.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3888.png", __ASSET__img_3888_png);
-		type.set ("img/3888.png", AssetType.IMAGE);
+		type.set ("img/3888.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/3923.png", __ASSET__img_3923_png);
-		type.set ("img/3923.png", AssetType.IMAGE);
+		type.set ("img/3923.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/4258.png", __ASSET__img_4258_png);
-		type.set ("img/4258.png", AssetType.IMAGE);
+		type.set ("img/4258.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/4265.png", __ASSET__img_4265_png);
-		type.set ("img/4265.png", AssetType.IMAGE);
+		type.set ("img/4265.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/backdrop.png", __ASSET__img_backdrop_png);
-		type.set ("img/backdrop.png", AssetType.IMAGE);
+		type.set ("img/backdrop.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/spritesheet-npc.png", __ASSET__img_spritesheet_npc_png);
-		type.set ("img/spritesheet-npc.png", AssetType.IMAGE);
+		type.set ("img/spritesheet-npc.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("img/spritesheet.png", __ASSET__img_spritesheet_png);
-		type.set ("img/spritesheet.png", AssetType.IMAGE);
+		type.set ("img/spritesheet.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("music/music.mp3", __ASSET__music_music_mp3);
-		type.set ("music/music.mp3", AssetType.MUSIC);
+		type.set ("music/music.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("snd/hit-alucard.wav", __ASSET__snd_hit_alucard_wav);
-		type.set ("snd/hit-alucard.wav", AssetType.SOUND);
+		type.set ("snd/hit-alucard.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		className.set ("snd/hit-bat.wav", __ASSET__snd_hit_bat_wav);
-		type.set ("snd/hit-bat.wav", AssetType.SOUND);
+		type.set ("snd/hit-bat.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		className.set ("snd/hit-skull.wav", __ASSET__snd_hit_skull_wav);
-		type.set ("snd/hit-skull.wav", AssetType.SOUND);
+		type.set ("snd/hit-skull.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		className.set ("snd/hit1.wav", __ASSET__snd_hit1_wav);
-		type.set ("snd/hit1.wav", AssetType.SOUND);
+		type.set ("snd/hit1.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		className.set ("snd/hit2.wav", __ASSET__snd_hit2_wav);
-		type.set ("snd/hit2.wav", AssetType.SOUND);
+		type.set ("snd/hit2.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		
 		
 		#elseif html5
 		
-		var id;
-		id = "img/15215.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/24903.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3228.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3436.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3449.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3697.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3888.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/3923.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/4258.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/4265.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/backdrop.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheet-npc.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheet.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "music/music.mp3";
-		path.set (id, id);
-		type.set (id, AssetType.MUSIC);
-		id = "snd/hit-alucard.wav";
-		path.set (id, id);
-		type.set (id, AssetType.SOUND);
-		id = "snd/hit-bat.wav";
-		path.set (id, id);
-		type.set (id, AssetType.SOUND);
-		id = "snd/hit-skull.wav";
-		path.set (id, id);
-		type.set (id, AssetType.SOUND);
-		id = "snd/hit1.wav";
-		path.set (id, id);
-		type.set (id, AssetType.SOUND);
-		id = "snd/hit2.wav";
-		path.set (id, id);
-		type.set (id, AssetType.SOUND);
+		path.set ("img/15215.png", "img/15215.png");
+		type.set ("img/15215.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/24903.png", "img/24903.png");
+		type.set ("img/24903.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3228.png", "img/3228.png");
+		type.set ("img/3228.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3436.png", "img/3436.png");
+		type.set ("img/3436.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3449.png", "img/3449.png");
+		type.set ("img/3449.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3697.png", "img/3697.png");
+		type.set ("img/3697.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3888.png", "img/3888.png");
+		type.set ("img/3888.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/3923.png", "img/3923.png");
+		type.set ("img/3923.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/4258.png", "img/4258.png");
+		type.set ("img/4258.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/4265.png", "img/4265.png");
+		type.set ("img/4265.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/backdrop.png", "img/backdrop.png");
+		type.set ("img/backdrop.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/spritesheet-npc.png", "img/spritesheet-npc.png");
+		type.set ("img/spritesheet-npc.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("img/spritesheet.png", "img/spritesheet.png");
+		type.set ("img/spritesheet.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("music/music.mp3", "music/music.mp3");
+		type.set ("music/music.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		path.set ("snd/hit-alucard.wav", "snd/hit-alucard.wav");
+		type.set ("snd/hit-alucard.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
+		path.set ("snd/hit-bat.wav", "snd/hit-bat.wav");
+		type.set ("snd/hit-bat.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
+		path.set ("snd/hit-skull.wav", "snd/hit-skull.wav");
+		type.set ("snd/hit-skull.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
+		path.set ("snd/hit1.wav", "snd/hit1.wav");
+		type.set ("snd/hit1.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
+		path.set ("snd/hit2.wav", "snd/hit2.wav");
+		type.set ("snd/hit2.wav", Reflect.field (AssetType, "sound".toUpperCase ()));
 		
 		
 		#else
 		
-		#if (windows || mac || linux)
-		
-		var useManifest = false;
-		
-		className.set ("img/15215.png", __ASSET__img_15215_png);
-		type.set ("img/15215.png", AssetType.IMAGE);
-		
-		className.set ("img/24903.png", __ASSET__img_24903_png);
-		type.set ("img/24903.png", AssetType.IMAGE);
-		
-		className.set ("img/3228.png", __ASSET__img_3228_png);
-		type.set ("img/3228.png", AssetType.IMAGE);
-		
-		className.set ("img/3436.png", __ASSET__img_3436_png);
-		type.set ("img/3436.png", AssetType.IMAGE);
-		
-		className.set ("img/3449.png", __ASSET__img_3449_png);
-		type.set ("img/3449.png", AssetType.IMAGE);
-		
-		className.set ("img/3697.png", __ASSET__img_3697_png);
-		type.set ("img/3697.png", AssetType.IMAGE);
-		
-		className.set ("img/3888.png", __ASSET__img_3888_png);
-		type.set ("img/3888.png", AssetType.IMAGE);
-		
-		className.set ("img/3923.png", __ASSET__img_3923_png);
-		type.set ("img/3923.png", AssetType.IMAGE);
-		
-		className.set ("img/4258.png", __ASSET__img_4258_png);
-		type.set ("img/4258.png", AssetType.IMAGE);
-		
-		className.set ("img/4265.png", __ASSET__img_4265_png);
-		type.set ("img/4265.png", AssetType.IMAGE);
-		
-		className.set ("img/backdrop.png", __ASSET__img_backdrop_png);
-		type.set ("img/backdrop.png", AssetType.IMAGE);
-		
-		className.set ("img/spritesheet-npc.png", __ASSET__img_spritesheet_npc_png);
-		type.set ("img/spritesheet-npc.png", AssetType.IMAGE);
-		
-		className.set ("img/spritesheet.png", __ASSET__img_spritesheet_png);
-		type.set ("img/spritesheet.png", AssetType.IMAGE);
-		
-		className.set ("music/music.mp3", __ASSET__music_music_mp3);
-		type.set ("music/music.mp3", AssetType.MUSIC);
-		
-		className.set ("snd/hit-alucard.wav", __ASSET__snd_hit_alucard_wav);
-		type.set ("snd/hit-alucard.wav", AssetType.SOUND);
-		
-		className.set ("snd/hit-bat.wav", __ASSET__snd_hit_bat_wav);
-		type.set ("snd/hit-bat.wav", AssetType.SOUND);
-		
-		className.set ("snd/hit-skull.wav", __ASSET__snd_hit_skull_wav);
-		type.set ("snd/hit-skull.wav", AssetType.SOUND);
-		
-		className.set ("snd/hit1.wav", __ASSET__snd_hit1_wav);
-		type.set ("snd/hit1.wav", AssetType.SOUND);
-		
-		className.set ("snd/hit2.wav", __ASSET__snd_hit2_wav);
-		type.set ("snd/hit2.wav", AssetType.SOUND);
-		
-		
-		if (useManifest) {
+		try {
 			
-			loadManifest ();
+			#if blackberry
+			var bytes = ByteArray.readFile ("app/native/manifest");
+			#elseif tizen
+			var bytes = ByteArray.readFile ("../res/manifest");
+			#elseif emscripten
+			var bytes = ByteArray.readFile ("assets/manifest");
+			#else
+			var bytes = ByteArray.readFile ("manifest");
+			#end
 			
-			if (Sys.args ().indexOf ("-livereload") > -1) {
+			if (bytes != null) {
 				
-				var path = FileSystem.fullPath ("manifest");
-				lastModified = FileSystem.stat (path).mtime.getTime ();
+				bytes.position = 0;
 				
-				timer = new Timer (2000);
-				timer.run = function () {
+				if (bytes.length > 0) {
 					
-					var modified = FileSystem.stat (path).mtime.getTime ();
+					var data = bytes.readUTFBytes (bytes.length);
 					
-					if (modified > lastModified) {
+					if (data != null && data.length > 0) {
 						
-						lastModified = modified;
-						loadManifest ();
+						var manifest:Array<AssetData> = Unserializer.run (data);
 						
-						if (eventCallback != null) {
+						for (asset in manifest) {
 							
-							eventCallback (this, "change");
+							path.set (asset.id, asset.path);
+							type.set (asset.id, asset.type);
 							
 						}
 						
@@ -241,15 +155,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 					
 				}
 				
+			} else {
+				
+				trace ("Warning: Could not load asset manifest");
+				
 			}
+			
+		} catch (e:Dynamic) {
+			
+			trace ("Warning: Could not load asset manifest");
 			
 		}
 		
-		#else
-		
-		loadManifest ();
-		
-		#end
 		#end
 		
 	}
@@ -257,7 +174,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 	
 	public override function exists (id:String, type:AssetType):Bool {
 		
-		var assetType = this.type.get (id);
+		var assetType = DefaultAssetLibrary.type.get (id);
 		
 		#if pixi
 		
@@ -316,13 +233,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		return BitmapData.fromImage (path.get (id));
 		
-		#elseif (flash)
+		#elseif flash
 		
 		return cast (Type.createInstance (className.get (id), []), BitmapData);
-		
-		#elseif openfl_html5
-		
-		return BitmapData.fromImage (ApplicationMain.images.get (path.get (id)));
 		
 		#elseif js
 		
@@ -330,8 +243,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#else
 		
-		if (className.exists(id)) return cast (Type.createInstance (className.get (id), []), BitmapData);
-		else return BitmapData.load (path.get (id));
+		return BitmapData.load (path.get (id));
 		
 		#end
 		
@@ -340,11 +252,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 	
 	public override function getBytes (id:String):ByteArray {
 		
-		#if (flash)
+		#if pixi
+		
+		return null;
+		
+		#elseif flash
 		
 		return cast (Type.createInstance (className.get (id), []), ByteArray);
-
-		#elseif (js || openfl_html5 || pixi)
+		
+		#elseif js
 		
 		var bytes:ByteArray = null;
 		var data = ApplicationMain.urlLoaders.get (path.get (id)).data;
@@ -376,8 +292,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#else
 		
-		if (className.exists(id)) return cast (Type.createInstance (className.get (id), []), ByteArray);
-		else return ByteArray.readFile (path.get (id));
+		return ByteArray.readFile (path.get (id));
 		
 		#end
 		
@@ -396,11 +311,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#else
 		
-		if (className.exists(id)) {
-			var fontClass = className.get(id);
-			Font.registerFont(fontClass);
-			return cast (Type.createInstance (fontClass, []), Font);
-		} else return new Font (path.get (id));
+		return new Font (path.get (id));
 		
 		#end
 		
@@ -411,18 +322,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if pixi
 		
-		return null;
+		//return null;		
 		
-		#elseif (flash)
+		#elseif flash
 		
 		return cast (Type.createInstance (className.get (id), []), Sound);
-		
-		#elseif openfl_html5
-		
-		var sound = new Sound ();
-		sound.__buffer = true;
-		sound.load (new URLRequest (path.get (id)));
-		return sound; 
 		
 		#elseif js
 		
@@ -430,8 +334,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#else
 		
-		if (className.exists(id)) return cast (Type.createInstance (className.get (id), []), Sound);
-		else return new Sound (new URLRequest (path.get (id)), null, true);
+		return new Sound (new URLRequest (path.get (id)), null, true);
 		
 		#end
 		
@@ -459,7 +362,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		return null;
 		
-		#elseif (flash)
+		#elseif flash
 		
 		return cast (Type.createInstance (className.get (id), []), Sound);
 		
@@ -469,58 +372,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#else
 		
-		if (className.exists(id)) return cast (Type.createInstance (className.get (id), []), Sound);
-		else return new Sound (new URLRequest (path.get (id)), null, type.get (id) == MUSIC);
-		
-		#end
-		
-	}
-	
-	
-	public override function getText (id:String):String {
-		
-		#if js
-		
-		var bytes:ByteArray = null;
-		var data = ApplicationMain.urlLoaders.get (path.get (id)).data;
-		
-		if (Std.is (data, String)) {
-			
-			return cast data;
-			
-		} else if (Std.is (data, ByteArray)) {
-			
-			bytes = cast data;
-			
-		} else {
-			
-			bytes = null;
-			
-		}
-		
-		if (bytes != null) {
-			
-			bytes.position = 0;
-			return bytes.readUTFBytes (bytes.length);
-			
-		} else {
-			
-			return null;
-		}
-		
-		#else
-		
-		var bytes = getBytes (id);
-		
-		if (bytes == null) {
-			
-			return null;
-			
-		} else {
-			
-			return bytes.readUTFBytes (bytes.length);
-			
-		}
+		return new Sound (new URLRequest (path.get (id)), null, type.get (id) == MUSIC);
 		
 		#end
 		
@@ -540,25 +392,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#end
 		
 		return true;
-		
-	}
-	
-	
-	public override function list (type:AssetType):Array<String> {
-		
-		var items = [];
-		
-		for (id in this.type.keys ()) {
-			
-			if (type == null || exists (id, type)) {
-				
-				items.push (id);
-				
-			}
-			
-		}
-		
-		return items;
 		
 	}
 	
@@ -662,64 +495,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 	}
 	
 	
-	#if (!flash && !html5)
-	private function loadManifest ():Void {
-		
-		try {
-			
-			#if blackberry
-			var bytes = ByteArray.readFile ("app/native/manifest");
-			#elseif tizen
-			var bytes = ByteArray.readFile ("../res/manifest");
-			#elseif emscripten
-			var bytes = ByteArray.readFile ("assets/manifest");
-			#else
-			var bytes = ByteArray.readFile ("manifest");
-			#end
-			
-			if (bytes != null) {
-				
-				bytes.position = 0;
-				
-				if (bytes.length > 0) {
-					
-					var data = bytes.readUTFBytes (bytes.length);
-					
-					if (data != null && data.length > 0) {
-						
-						var manifest:Array<Dynamic> = Unserializer.run (data);
-						
-						for (asset in manifest) {
-							
-							if (!className.exists (asset.id)) {
-								
-								path.set (asset.id, asset.path);
-								type.set (asset.id, Type.createEnum (AssetType, asset.type));
-								
-							}
-							
-						}
-						
-					}
-					
-				}
-				
-			} else {
-				
-				trace ("Warning: Could not load asset manifest (bytes was null)");
-				
-			}
-		
-		} catch (e:Dynamic) {
-			
-			trace ('Warning: Could not load asset manifest (${e})');
-			
-		}
-		
-	}
-	#end
-	
-	
 	public override function loadMusic (id:String, handler:Sound -> Void):Void {
 		
 		#if (flash || js)
@@ -778,74 +553,31 @@ class DefaultAssetLibrary extends AssetLibrary {
 	}
 	
 	
-	public override function loadText (id:String, handler:String -> Void):Void {
-		
-		#if js
-		
-		if (path.exists (id)) {
-			
-			var loader = new URLLoader ();
-			loader.addEventListener (Event.COMPLETE, function (event:Event) {
-				
-				handler (event.currentTarget.data);
-				
-			});
-			loader.load (new URLRequest (path.get (id)));
-			
-		} else {
-			
-			handler (getText (id));
-			
-		}
-		
-		#else
-		
-		var callback = function (bytes:ByteArray):Void {
-			
-			if (bytes == null) {
-				
-				handler (null);
-				
-			} else {
-				
-				handler (bytes.readUTFBytes (bytes.length));
-				
-			}
-			
-		}
-		
-		loadBytes (id, callback);
-		
-		#end
-		
-	}
-	
-	
 }
 
 
 #if pixi
 #elseif flash
 
-@:keep class __ASSET__img_15215_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_24903_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3228_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3436_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3449_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3697_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3888_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_3923_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_4258_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_4265_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_backdrop_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_spritesheet_npc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__img_spritesheet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__music_music_mp3 extends openfl.media.Sound { }
-@:keep class __ASSET__snd_hit_alucard_wav extends openfl.media.Sound { }
-@:keep class __ASSET__snd_hit_bat_wav extends openfl.media.Sound { }
-@:keep class __ASSET__snd_hit_skull_wav extends openfl.media.Sound { }
-@:keep class __ASSET__snd_hit1_wav extends openfl.media.Sound { }
-@:keep class __ASSET__snd_hit2_wav extends openfl.media.Sound { }
+class __ASSET__img_15215_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_24903_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3228_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3436_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3449_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3697_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3888_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_3923_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_4258_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_4265_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_backdrop_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_spritesheet_npc_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__img_spritesheet_png extends flash.display.BitmapData { public function new () { super (0, 0); } }
+class __ASSET__music_music_mp3 extends flash.media.Sound { }
+class __ASSET__snd_hit_alucard_wav extends flash.media.Sound { }
+class __ASSET__snd_hit_bat_wav extends flash.media.Sound { }
+class __ASSET__snd_hit_skull_wav extends flash.media.Sound { }
+class __ASSET__snd_hit1_wav extends flash.media.Sound { }
+class __ASSET__snd_hit2_wav extends flash.media.Sound { }
 
 
 #elseif html5
@@ -869,30 +601,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
-
-
-#elseif (windows || mac || linux)
-
-
-@:bitmap("assets/img/15215.png") class __ASSET__img_15215_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/24903.png") class __ASSET__img_24903_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3228.png") class __ASSET__img_3228_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3436.png") class __ASSET__img_3436_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3449.png") class __ASSET__img_3449_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3697.png") class __ASSET__img_3697_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3888.png") class __ASSET__img_3888_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/3923.png") class __ASSET__img_3923_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/4258.png") class __ASSET__img_4258_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/4265.png") class __ASSET__img_4265_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/backdrop.png") class __ASSET__img_backdrop_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/spritesheet-npc.png") class __ASSET__img_spritesheet_npc_png extends flash.display.BitmapData {}
-@:bitmap("assets/img/spritesheet.png") class __ASSET__img_spritesheet_png extends flash.display.BitmapData {}
-@:sound("assets/music/music.mp3") class __ASSET__music_music_mp3 extends flash.media.Sound {}
-@:sound("assets/sound/hit-alucard.wav") class __ASSET__snd_hit_alucard_wav extends flash.media.Sound {}
-@:sound("assets/sound/hit-bat.wav") class __ASSET__snd_hit_bat_wav extends flash.media.Sound {}
-@:sound("assets/sound/hit-skull.wav") class __ASSET__snd_hit_skull_wav extends flash.media.Sound {}
-@:sound("assets/sound/hit1.wav") class __ASSET__snd_hit1_wav extends flash.media.Sound {}
-@:sound("assets/sound/hit2.wav") class __ASSET__snd_hit2_wav extends flash.media.Sound {}
 
 
 #end

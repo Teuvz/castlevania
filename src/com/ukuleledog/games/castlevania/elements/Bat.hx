@@ -1,6 +1,6 @@
 package com.ukuleledog.games.castlevania.elements;
 import openfl.Assets;
-import openfl.events.Event;
+import flash.events.Event;
 
 /**
  * ...

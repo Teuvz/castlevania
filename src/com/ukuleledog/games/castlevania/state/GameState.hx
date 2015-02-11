@@ -12,18 +12,18 @@ import com.ukuleledog.games.core.State;
 import flash.display.BitmapData;
 import flash.utils.Timer;
 import openfl.Assets;
-import openfl.display.Bitmap;
-import openfl.display.Sprite;
-import openfl.events.Event;
-import openfl.events.KeyboardEvent;
+import flash.display.Bitmap;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
 import flash.utils.Dictionary;
 import flash.ui.Keyboard;
-import openfl.geom.Point;
-import openfl.geom.Rectangle;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import flash.events.TimerEvent;
-import openfl.media.Sound;
-import openfl.media.SoundChannel;
-import openfl.media.SoundTransform;
+import flash.media.Sound;
+import flash.media.SoundChannel;
+import flash.media.SoundTransform;
 
 /**
  * ...
@@ -170,6 +170,10 @@ class GameState extends State
 				killEnemy();
 			}
 			
+		}
+		else if ( keysPressed[Keyboard.RIGHT] )
+		{
+			alucard.setAnimation( 'walk' );
 		}
 		else if ( alucard.isPlayable() )
 		{

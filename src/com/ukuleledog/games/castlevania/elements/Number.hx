@@ -2,8 +2,8 @@ package com.ukuleledog.games.castlevania.elements;
 import com.ukuleledog.games.core.AnimatedObject;
 import flash.display.BitmapData;
 import openfl.Assets;
-import openfl.geom.Point;
-import openfl.geom.Rectangle;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 
 /**
  * ...
